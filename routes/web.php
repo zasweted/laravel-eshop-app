@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/admin-master', function () {
+    return view('admin.admin-master');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
