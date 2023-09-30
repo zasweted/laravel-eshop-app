@@ -1,1 +1,5 @@
-<img style="width: 100px;" src={{ Storage::url('asset/cube-logo.png') }} alt="cube-logo">
+<img style="
+width: 100%;
+height: 100px;
+object-fit: contain;"
+ src={{ asset('backend/assets/images/1.png') }} alt="cube-logo">
