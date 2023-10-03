@@ -47,7 +47,9 @@
                                         <input class="form-control" id="username" type="text" name="username" :value="old('username')" required autofocus autocomplete="username" placeholder="Username">
                                     </div>
                                 </div>
-    
+                                @error('email')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 <!-- Password -->
                                 <div class="form-group mb-3 row">
                                     <div class="col-12">
@@ -57,7 +59,9 @@
                                         required autocomplete="current-password" placeholder="Password">
                                     </div>
                                 </div>
-    
+                                @error('password')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 <!-- Remember Me -->
                                 <div class="block mt-4">
                                     <label for="remember_me" class="inline-flex items-center">

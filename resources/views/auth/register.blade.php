@@ -48,25 +48,39 @@
                                         <input class="form-control" id="name" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder="Name"/>
                                     </div>
                                 </div>
+                                @error('name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+
                                 <!-- Username -->
                                 <div class="form-group mb-3 row">
                                     <div class="col-12">
                                         <input class="form-control" id="username"type="text" name="username" :value="old('username')" required autofocus autocomplete="username" placeholder="Username" />
                                     </div>
                                 </div>
-                                <!-- Email Address -->
+                                @error('username')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
 
+                                <!-- Email Address -->
                                 <div class="form-group mb-3 row">
                                     <div class="col-12">
                                         <input class="form-control" id="email" type="email" name="email" :value="old('email')" required autocomplete="email" placeholder="Email" />
                                     </div>
                                 </div>
+                                @error('email')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+
                                 <!-- Password -->
                                 <div class="form-group mb-3 row">
                                     <div class="col-12">
                                         <input class="form-control" id="password" type="password" name="password" required autocomplete="new-password" placeholder="Password">
                                     </div>
                                 </div>
+                                @error('password')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
 
                                 <!-- Confirm Password -->
                                 <div class="form-group mb-3 row">
@@ -74,6 +88,9 @@
                                         <input class="form-control" id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
                                     </div>
                                 </div>
+                                @error('password_confirmation')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
 
                                 <div class="form-group text-center row mt-3 pt-1">
                                     <div class="col-12">
