@@ -47,7 +47,7 @@
                                         <input class="form-control" id="username" type="text" name="username" :value="old('username')" required autofocus autocomplete="username" placeholder="Username">
                                     </div>
                                 </div>
-                                @error('email')
+                                @error('username')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                                 <!-- Password -->
