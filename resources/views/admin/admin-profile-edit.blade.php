@@ -62,7 +62,7 @@
                                     <div class="col-sm-10">
                                         <input class="form-control" id="profile_image" type="file"
                                             name="profile_image" />
-                                        <img id="showProfileImage" class="mt-2" style="object-fit: cover; width:80px; height:80px;" src="{{ isset($userData->profile_image) ? asset('/uploads/admin_profile_images/' . $userData->profile_image) : asset('/backend/assets/images/small/img-5.jpg') }}"
+                                        <img id="showProfileImage" class="mt-2" style="object-fit: cover; width:80px; height:80px;" src="{{ isset($userData->profile_image) ? asset('/uploads/admin_profile_images/' . $userData->profile_image) : asset('/uploads/no_image.jpg') }}"
                                             alt="Card image cap">
                                     </div>
                                 </div>
