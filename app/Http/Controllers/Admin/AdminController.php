@@ -12,7 +12,11 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.index');
+        $userData = User::find(Auth::user()->id);
+
+        return view('admin.index', [
+            'userData' => $userData
+        ]);
     }
 
     /**
@@ -67,20 +71,46 @@ class AdminController extends Controller
                 'email' => $request->email
             ]);
         }
+
+        $notification = [
+            'message' => $userData->username . ' Profile Updated Successfully',
+            'alert-type' => 'success',
+        ];
         // todo Add functionality to remove previous images if you replace with new one.
-        return redirect()->route('admin.profile'); 
+        return redirect()->route('admin.profile')->with($notification); 
+    }
+
+    public function editProfilePassword()
+    {
+        $userData = User::find(Auth::user()->id);
+
+        return view('admin.admin-profile-password-change', [
+            'userData' => $userData
+        ]);
+    }
+
+    public function updateProfilePassword(Request $request)
+    {
+        //store new pass
     }
     /**
      * Destroy an authenticated session.
      */
     public function destroy(Request $request): RedirectResponse
     {
+        $userData = User::find(Auth::user()->id);
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        $notification = [
+            'message' => $userData->username . ' Loged out Successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect('/login')->with($notification);
     }
 }
