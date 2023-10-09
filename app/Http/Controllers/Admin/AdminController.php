@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class AdminController extends Controller
@@ -91,7 +92,44 @@ class AdminController extends Controller
 
     public function updateProfilePassword(Request $request)
     {
-        //store new pass
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required',
+            'repeat_password' => 'required|same:new_password'
+        ]);
+
+        $userData = User::find(Auth::id());
+        $hashedPassword = $userData->password;
+
+        if(Hash::check($request->new_password, $hashedPassword) && Hash::check($request->old_password, $hashedPassword)) {
+
+            $notification = [
+                'message' => 'Using Old Password As Your New Password Is Not Allowed',
+                'alert-type' => 'warning',
+            ];
+            return redirect()->back()->with($notification);
+            
+        } else if(Hash::check($request->old_password, $hashedPassword)){
+            
+            $userData->update([
+                'password' => Hash::make($request->new_password)
+            ]);
+
+            $notification = [
+                'message' => $userData->username . ' Password Updated Successfully',
+                'alert-type' => 'success',
+            ];
+            return redirect()->route('dashboard')->with($notification);
+
+        } else {
+            
+            $notification = [
+                'message' => 'Old Password Is Incorrect',
+                'alert-type' => 'warning',
+            ];
+            return redirect()->back()->with($notification);
+
+        }
     }
     /**
      * Destroy an authenticated session.
