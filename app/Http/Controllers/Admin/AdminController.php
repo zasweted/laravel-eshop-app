@@ -14,6 +14,7 @@ class AdminController extends Controller
     public function index()
     {
         $userData = User::find(Auth::user()->id);
+        
 
         return view('admin.index', [
             'userData' => $userData
@@ -26,9 +27,9 @@ class AdminController extends Controller
     public function profile()
     {
         $userData = User::find(Auth::user()->id);
-
+        
         return view('admin.admin-profile', [
-            'userData' => $userData
+            'userData' => $userData,
         ]);
     }
 
