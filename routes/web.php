@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Home\HeroSliderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,12 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/admin/profile/pass-edit', [AdminController::class, 'editProfilePassword'])->name('admin.profile.passw-edit');
     Route::post('/admin/profile/pass-update', [AdminController::class, 'updateProfilePassword'])->name('admin.profile.passw-update');
     Route::post('/admin/profile/update', [AdminController::class, 'updateProfile'])->name('admin.profile.update');
+});
+//HeroSlider Group Routes
+Route::controller(HeroSliderController::class)->group(function () {
+    Route::get('/admin/home/hero-slider', [HeroSliderController::class, 'index'])->middleware(['auth', 'verified'])->name('home.hero-slider');
+    Route::post('/admin/home/hero-slider-update', [HeroSliderController::class, 'updateHeroSlider'])->name('home.hero-slider-update');
+    
 });
 
 Route::middleware('auth')->group(function () {
